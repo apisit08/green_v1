@@ -58,7 +58,7 @@ export default {
     nameErrors () {
       const errors = []
       if (!this.$v.passwords.$dirty) return errors
-      !this.$v.passwords.maxLength && errors.push('Pass must be at most 10 characters long')
+      !this.$v.passwords.maxLength && errors.push('Password must be at most 10 characters long')
       !this.$v.passwords.required && errors.push('Pass is required.')
       return errors
     },
