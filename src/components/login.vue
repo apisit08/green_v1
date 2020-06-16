@@ -80,11 +80,21 @@ export default {
       this.pass = ''
       this.email = ''
     },
-    chklogin () {
+    async chklogin () {
       if (this.email === 'a@email.com' && this.passwords === '123456') {
         console.log('e', this.email)
         console.log('p', this.passwords)
-        window.location.href = 'views/Home.vue'
+        try {
+          var { data } = await this.axios.post('http://localhost:3001/api/v1/user/sign_in', {
+            user: {
+              email: this.email,
+              password: this.passwords
+            }
+          })
+          console.log(data)
+        } catch (error) {
+          console.log(error.message)
+        }
       } else {
 
       }
