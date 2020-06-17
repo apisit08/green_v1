@@ -6,10 +6,10 @@
       dark
     >
       <div class="d-flex align-center">
-        <h1>Login</h1>
+        <h1>green V1</h1>
       </div>
 
-      <v-chip class="ma-2" large @click="register" color="#2d90c2">
+      <v-chip class="ma-2" large @click="register" color="#22a342">
         <v-avatar left>
           <v-icon>mdi-account-plus</v-icon>
         </v-avatar>
