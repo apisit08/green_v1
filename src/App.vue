@@ -1,7 +1,5 @@
 <template>
-<v-container>
   <v-app>
-    <v-container>
     <v-app-bar
       app
       color="white"
@@ -22,14 +20,10 @@
 
       <v-spacer></v-spacer>
     </v-app-bar>
-    </v-container>
     <v-content>
       <router-view/>
     </v-content>
   </v-app>
-
-</v-container>
-
 </template>
 
 <script>

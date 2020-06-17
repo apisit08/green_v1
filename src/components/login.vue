@@ -1,18 +1,19 @@
 <template>
 <v-container fluid>
     <v-row>
-        <v-col></v-col>
-        <v-col >
+        <v-col cols="4"></v-col>
+        <v-col cols="4">
     <v-img
       class="white--text align-end"
       src="../assets/oneconflogo.png"
     >
     </v-img>
+    <br>
           <form>
     <v-text-field
       v-model="email"
       :error-messages="emailErrors"
-      label="E-mail"
+      label="ยูสเซอร์เนม"
       outlined
       required
       @input="$v.email.$touch()"
@@ -22,17 +23,20 @@
       v-model="passwords"
       :error-messages="nameErrors"
       :counter="10"
-      label="Password"
+      label="รหัสผ่าน"
       outlined
       required
       @input="$v.passwords.$touch()"
       @blur="$v.passwords.$touch()"
     ></v-text-field>
-
-    <v-btn block class="mr-4" color="success" @click="chklogin()">login</v-btn>
+      <v-row>
+        <v-col cols="12" class="text-center">
+            <v-btn width="300" color="success" @click="chklogin()">เข้าร่วม</v-btn>
+        </v-col>
+      </v-row>
   </form>
         </v-col>
-        <v-col></v-col>
+        <v-col cols="4"></v-col>
     </v-row>
 </v-container>
 
