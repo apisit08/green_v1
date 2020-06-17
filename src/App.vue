@@ -6,7 +6,7 @@
       dark
     >
       <div class="d-flex align-center">
-        <h1>green V1</h1>
+        <h1 @click="login">green V1</h1>
       </div>
 
       <v-chip class="ma-2" large @click="register" color="#22a342">
@@ -44,6 +44,9 @@ export default {
     },
     register () {
       this.goPage('/register')
+    },
+    login () {
+      this.goPage('/')
     }
   }
 }
