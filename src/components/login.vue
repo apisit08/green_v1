@@ -1,14 +1,24 @@
 <template>
 <v-container fluid>
-    <v-row justify="space-around">
-      <span class="group pa-2 teal">
-        <v-icon x-large dark>account_circle</v-icon>
-      </span>
-    </v-row>
     <v-row>
         <v-col></v-col>
         <v-col >
-    <form>
+  <v-card
+    class="mx-auto"
+    max-width="450"
+  >
+    <v-img
+      class="white--text align-end"
+      height="380px"
+      src="https://image.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14046.jpg"
+    >
+      <v-card-title>Login</v-card-title>
+    </v-img>
+
+    <v-card-subtitle class="pb-0"></v-card-subtitle>
+
+    <v-card-text class="text--primary">
+          <form>
     <v-text-field
       v-model="email"
       :error-messages="emailErrors"
@@ -30,6 +40,8 @@
     <v-btn class="mr-4" color="success" @click="chklogin()">login</v-btn>
     <v-btn @click="clear">clear</v-btn>
   </form>
+    </v-card-text>
+  </v-card>
         </v-col>
         <v-col></v-col>
     </v-row>
@@ -85,12 +97,7 @@ export default {
         console.log('e', this.email)
         console.log('p', this.passwords)
         try {
-          var { data } = await this.axios.post('http://localhost:3001/api/v1/user/sign_in', {
-            user: {
-              email: this.email,
-              password: this.passwords
-            }
-          })
+          var { data } = await this.axios.get('http://192.168.75.130:5000/customers')
           console.log(data)
         } catch (error) {
           console.log(error.message)
