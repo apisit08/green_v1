@@ -85,7 +85,7 @@ export default {
         console.log('e', this.email)
         console.log('p', this.passwords)
         try {
-          var { data } = await this.axios.post('http://localhost:3001/api/v1/user/sign_in', {
+          var { data } = await this.axios.post('http://192.168.74.124:3001/api/v1/user/sign_in', {
             user: {
               email: this.email,
               password: this.passwords
