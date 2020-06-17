@@ -3,26 +3,17 @@
     <v-row>
         <v-col></v-col>
         <v-col >
-  <v-card
-    class="mx-auto"
-    max-width="450"
-  >
     <v-img
       class="white--text align-end"
-      height="380px"
-      src="https://image.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14046.jpg"
+      src="../assets/oneconflogo.png"
     >
-      <v-card-title>Login</v-card-title>
     </v-img>
-
-    <v-card-subtitle class="pb-0"></v-card-subtitle>
-
-    <v-card-text class="text--primary">
           <form>
     <v-text-field
       v-model="email"
       :error-messages="emailErrors"
       label="E-mail"
+      outlined
       required
       @input="$v.email.$touch()"
       @blur="$v.email.$touch()"
@@ -32,16 +23,14 @@
       :error-messages="nameErrors"
       :counter="10"
       label="Password"
+      outlined
       required
       @input="$v.passwords.$touch()"
       @blur="$v.passwords.$touch()"
     ></v-text-field>
 
-    <v-btn class="mr-4" color="success" @click="chklogin()">login</v-btn>
-    <v-btn @click="clear">clear</v-btn>
+    <v-btn block class="mr-4" color="success" @click="chklogin()">login</v-btn>
   </form>
-    </v-card-text>
-  </v-card>
         </v-col>
         <v-col></v-col>
     </v-row>
