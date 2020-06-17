@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <v-container>
     <v-app-bar
       app
       color="success"
@@ -18,7 +19,7 @@
 
       <v-spacer></v-spacer>
     </v-app-bar>
-
+    </v-container>
     <v-content>
       <router-view/>
     </v-content>
