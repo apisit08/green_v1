@@ -1,7 +1,5 @@
 <template>
-<v-container>
   <v-app>
-    <v-container>
     <v-app-bar
       app
       color="white"
@@ -10,7 +8,7 @@
     >
 
       <div class="d-flex align-center">
-        <v-img src="@/images/inetlogo.png" max-width="100px" class="app-bar-right"></v-img>
+        <v-img src="@/images/inetlogo.png" max-width="100px" class="app-bar-left"></v-img>
       </div>
 
       <!-- <v-chip class="ma-2" large @click="register" color="#229c40">
@@ -22,16 +20,11 @@
 
       <v-spacer></v-spacer>
     </v-app-bar>
-    </v-container>
     <v-content>
       <router-view/>
     </v-content>
   </v-app>
-
-</v-container>
-
 </template>
-
 <script>
 // import Login from './components/login'
 
@@ -60,7 +53,7 @@ export default {
 </script>
 
 <style>
-.app-bar-right {
-  margin-left: 200px;
+.app-bar-left {
+  margin-left: 100px;
 }
 </style>
