@@ -3,10 +3,16 @@ import VueRouter from 'vue-router'
 
 import Register from '../components/register.vue'
 import Login from '../components/login'
+import Manage from '../components/manage'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/manage',
+    name: 'Manage',
+    component: Manage
+  },
   {
     path: '/register',
     name: 'Register',

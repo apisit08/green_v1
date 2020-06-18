@@ -1,0 +1,74 @@
+<template>
+    <v-container>
+      <v-card outlined>
+          <v-card-title class="font-card-title">
+            Schedule
+            <v-spacer></v-spacer>
+            <v-icon>mdi-plus-circle</v-icon>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-card-text class="text--primary font-card-text">
+              <v-row>
+                  <v-col cols="12" sm="10" md="10">
+                      การประชุมเตรียมความพร้อมโกอินเตอร์ทูนาซ่า
+                  </v-col>
+                  <v-col cols="12" sm="2" md="2">
+                      <v-btn color="success" style="margin-right: 15px;">เริ่มต้นสนทนา</v-btn>
+                      <v-menu>
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-icon v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
+                          </template>
+                          <v-list>
+                              <v-list-item
+                                v-for="(item, i) in items"
+                                :key="i"
+                                @click="() => {}"
+                              >
+                                <v-avatar left><v-icon>{{ item.icon }}</v-icon></v-avatar>
+                                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                              </v-list-item>
+                          </v-list>
+                      </v-menu>
+                  </v-col>
+              </v-row>
+              <v-row>
+                <v-card-subtitle class="pb-0" style="margin-top: -30px; margin-left: -3.5px;">
+                  3:00 - 4:30 pm
+                </v-card-subtitle>
+              </v-row>
+          </v-card-text>
+      </v-card>
+    </v-container>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      items: [
+        {
+          icon: 'mdi-pencil',
+          title: 'แก้ไข'
+        },
+        {
+          icon: 'mdi-delete',
+          title: 'ลบ'
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style>
+.v-sheet.v-card {
+  border-radius: 10px;
+}
+.font-card-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.font-card-text {
+  font-size: 16px;
+}
+</style>

@@ -45,6 +45,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, maxLength, email } from 'vuelidate/lib/validators'
+import { EventBus } from '@/EventBus'
 
 export default {
   mixins: [validationMixin],
@@ -54,10 +55,13 @@ export default {
     email: { required, email }
   },
 
-  data: () => ({
-    passwords: '',
-    email: ''
-  }),
+  data () {
+    return {
+      passwords: '',
+      email: '',
+      user: true
+    }
+  },
 
   computed: {
     nameErrors () {
@@ -76,6 +80,10 @@ export default {
     }
   },
 
+  created () {
+    // localStorage.removeItem('user')
+  },
+
   methods: {
     submit () {
       this.$v.$touch()
@@ -85,19 +93,16 @@ export default {
       this.pass = ''
       this.email = ''
     },
-    async chklogin () {
-      if (this.email === 'a@email.com' && this.passwords === '123456') {
-        console.log('e', this.email)
-        console.log('p', this.passwords)
-        try {
-          var { data } = await this.axios.get('http://192.168.75.130:5000/customers')
-          console.log(data)
-        } catch (error) {
-          console.log(error.message)
-        }
-      } else {
-
-      }
+    chklogin () {
+      // localStorage.setItem('user', this.user)
+      EventBus.$emit('user')
+      this.manage()
+    },
+    goPage (link) {
+      this.$router.push(link)
+    },
+    manage () {
+      this.goPage('/manage')
     }
   }
 }
