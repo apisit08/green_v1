@@ -74,8 +74,7 @@
               <Schedule />
             </v-row>
             <v-row>
-              <ConversationSaved />
-              <ConversationSavedMeeting />
+              <conversationSavedMeeting />
             </v-row>
           </div>
         </b-collapse>
@@ -88,15 +87,13 @@
 </template>
 <script>
 import Schedule from '../components/schedule'
-import ConversationSaved from '../components/conversationSaved'
-import ConversationSavedMeeting from '../components/conversationSavedMeeting'
+import conversationSavedMeeting from '../components/conversationSavedMeeting'
 import Setting from '../components/modal/setting'
 
 export default {
   components: {
     Schedule,
-    ConversationSaved,
-    ConversationSavedMeeting,
+    conversationSavedMeeting,
     Setting
   },
   data () {
