@@ -41,7 +41,7 @@
             </tr>
           </table>
          <b-collapse :id="'collapse-'+i" v-model="visible" class="mt-2">
-          <b-card>
+          <div>
             <v-row>
               <v-col cols="12">
                 <b>เชิญผู้เข้าร่วมสนทนา</b>
@@ -76,7 +76,7 @@
             <v-row>
               <ConversationSaved />
             </v-row>
-          </b-card>
+          </div>
         </b-collapse>
         </div>
       </b-card>
