@@ -23,7 +23,7 @@
               <v-btn icon color="#778899">
                 <v-icon>mdi-account-plus</v-icon>
               </v-btn>
-              <v-btn v-b-modal="'my-modal'" icon color="#778899">
+              <v-btn v-b-modal="'modal-setting'" icon color="#778899">
                 <v-icon>mdi-cog</v-icon>
               </v-btn>
               <button class="btn btn-success" @click="startroom()">เริ่มต้นสนทนา</button>
