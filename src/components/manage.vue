@@ -2,7 +2,7 @@
 <v-container>
     <v-row>
       <v-col cols="12">
-        <h2>ห้องสนทนา</h2>
+        <h2>ห้องประชุม</h2>
       </v-col>
     </v-row>
     <v-row v-for="(item,i) in 2" :key="i">
@@ -12,7 +12,7 @@
           <table border="0" width="100%">
             <tr>
               <td>
-                <v-btn icon color="secondary"><v-icon>mdi-pencil</v-icon></v-btn>
+                <!-- <v-btn icon color="secondary"><v-icon>mdi-pencil</v-icon></v-btn> -->
                 <label>Room{{i+1}}</label>
               </td>
               <td>
@@ -23,7 +23,7 @@
               <v-btn icon color="#778899">
                 <v-icon>mdi-account-plus</v-icon>
               </v-btn>
-              <v-btn icon color="#778899">
+              <v-btn v-b-modal="'my-modal'" icon color="#778899">
                 <v-icon>mdi-cog</v-icon>
               </v-btn>
               <button class="btn btn-success">เริ่มต้นสนทนา</button>
@@ -40,7 +40,7 @@
               </td>
             </tr>
           </table>
-         <b-collapse :id="'collapse-'+i" v-model="visible" class="mt-2">
+         <b-collapse :id="'collapse-'+i" class="mt-2">
           <div>
             <v-row>
               <v-col cols="12">
@@ -83,19 +83,21 @@
       </b-card>
       </v-col>
     </v-row>
+    <Setting/>
 </v-container>
 </template>
-
 <script>
 import Schedule from '../components/schedule'
 import ConversationSaved from '../components/conversationSaved'
 import ConversationSavedMeeting from '../components/conversationSavedMeeting'
+import Setting from '../components/modal/setting'
 
 export default {
   components: {
     Schedule,
     ConversationSaved,
-    ConversationSavedMeeting
+    ConversationSavedMeeting,
+    Setting
   },
   data () {
     return {}
