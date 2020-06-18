@@ -1,31 +1,110 @@
-
 <template>
-    <v-container>
-      <h1>Hello! I'm Manage.</h1>
-      <Schedule />
-      <ConversationSaved />
-    </v-container>
+<v-container>
+    <v-row>
+      <v-col cols="12">
+        <h2>ห้องสนทนา</h2>
+      </v-col>
+    </v-row>
+    <v-row v-for="(item,i) in 2" :key="i">
+      <v-col cols="12">
+        <b-card>
+        <div>
+          <table border="0" width="100%">
+            <tr>
+              <td>
+                <v-btn icon color="secondary"><v-icon>mdi-pencil</v-icon></v-btn>
+                <label>Room{{i+1}}</label>
+              </td>
+              <td>
+                <div class="float-right">
+                  <v-btn icon color="#778899">
+                <v-icon>mdi-calendar</v-icon>
+              </v-btn>
+              <v-btn icon color="#778899">
+                <v-icon>mdi-account-plus</v-icon>
+              </v-btn>
+              <v-btn icon color="#778899">
+                <v-icon>mdi-cog</v-icon>
+              </v-btn>
+              <button class="btn btn-success">เริ่มต้นสนทนา</button>
+                </div>
+              </td>
+              <td>
+                <b-button
+                  v-b-toggle="'collapse-'+i"
+                  class="float-right"
+                  variant="outline-secondary"
+                >
+                  <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </b-button>
+              </td>
+            </tr>
+          </table>
+         <b-collapse :id="'collapse-'+i" v-model="visible" class="mt-2">
+          <div>
+            <v-row>
+              <v-col cols="12">
+                <b>เชิญผู้เข้าร่วมสนทนา</b>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <button class="btn-outline-success"><i class="fa fa-clone" aria-hidden="true"></i>
+              &nbsp;Copy link</button>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <b>เชิญผู้เข้าร่วมผ่านอีเมลล์</b>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="5">
+                <form>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="invite someone...">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary " type="submit">ส่งคำเชิญ</button>
+                </div>
+              </div>
+            </form>
+              </v-col>
+            </v-row>
+            <v-row>
+              <Schedule />
+            </v-row>
+            <v-row>
+              <ConversationSaved />
+              <ConversationSavedMeeting />
+            </v-row>
+          </div>
+        </b-collapse>
+        </div>
+      </b-card>
+      </v-col>
+    </v-row>
+</v-container>
 </template>
 
 <script>
 import Schedule from '../components/schedule'
 import ConversationSaved from '../components/conversationSaved'
+import ConversationSavedMeeting from '../components/conversationSavedMeeting'
 
 export default {
   components: {
     Schedule,
-    ConversationSaved
+    ConversationSaved,
+    ConversationSavedMeeting
   },
   data () {
-    return {
-      user: '',
-      panel: '',
-      items: 3
-    }
+    return {}
   }
-
-  // created () {
-  //   this.user = localStorage.getItem('user')
-  // }
 }
 </script>
+<style>
+  label {
+    font-size: 20;
+    font-weight: bold;
+  }
+</style>
