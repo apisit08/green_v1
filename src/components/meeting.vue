@@ -23,10 +23,10 @@
               <v-btn icon color="#778899">
                 <v-icon>mdi-account-plus</v-icon>
               </v-btn>
-              <v-btn icon color="#778899">
+              <v-btn v-b-modal="'my-modal'" icon color="#778899">
                 <v-icon>mdi-cog</v-icon>
               </v-btn>
-              <button class="btn btn-success">เริ่มต้นสนทนา</button>
+              <button class="btn btn-success" @click="startroom()">เริ่มต้นสนทนา</button>
                 </div>
               </td>
               <td>
@@ -40,7 +40,7 @@
               </td>
             </tr>
           </table>
-         <b-collapse :id="'collapse-'+i" v-model="visible" class="mt-2">
+         <b-collapse :id="'collapse-'+i" class="mt-2">
           <div>
             <v-row>
               <v-col cols="12">
@@ -82,19 +82,32 @@
       </b-card>
       </v-col>
     </v-row>
+    <Setting/>
 </v-container>
 </template>
 <script>
 import Schedule from '../components/schedule'
 import ConversationSaved from '../components/conversationSaved'
+import Setting from '../components/modal/setting'
+import { EventBus } from '@/EventBus'
 
 export default {
   components: {
     Schedule,
-    ConversationSaved
+    ConversationSaved,
+    Setting
   },
   data () {
     return {}
+  },
+  methods: {
+    startroom () {
+      EventBus.$emit('user')
+      this.goPage('/manage')
+    },
+    goPage (link) {
+      this.$router.push(link)
+    }
   }
 }
 </script>
