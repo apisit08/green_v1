@@ -11,52 +11,54 @@
     <br>
           <form>
     <v-text-field
-      v-model="email"
-      :error-messages="emailErrors"
-      label="ยูสเซอร์เนม"
+      v-model="username"
+      :error-messages="userErrors"
+      label="ป้อนชื่อของคุณในการสนทนา"
       outlined
       required
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
+      @input="$v.username.$touch()"
+      @blur="$v.username.$touch()"
     ></v-text-field>
     <v-text-field
       v-model="passwords"
       :error-messages="nameErrors"
       :counter="10"
-      label="รหัสผ่าน"
+      label="ป้อนรหัสห้องสนทนา"
       outlined
       required
       @input="$v.passwords.$touch()"
       @blur="$v.passwords.$touch()"
     ></v-text-field>
-      <v-row>
-        <v-col cols="12" class="text-center">
-            <v-btn width="300" color="success" @click="chklogin()">เข้าร่วม</v-btn>
-        </v-col>
-      </v-row>
   </form>
         </v-col>
         <v-col cols="4"></v-col>
     </v-row>
+    <v-row>
+        <v-col ></v-col>
+        <v-col cols="3" class="text-center">
+            <v-btn block color="success" @click="chklogin()">เข้าร่วม</v-btn>
+        </v-col>
+        <v-col></v-col>
+      </v-row>
 </v-container>
 
 </template>
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, maxLength, email } from 'vuelidate/lib/validators'
+import { required, maxLength } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
 
   validations: {
     passwords: { required, maxLength: maxLength(10) },
-    email: { required, email }
+    username: { required, maxLength: maxLength(10) }
   },
 
   data: () => ({
     passwords: '',
-    email: ''
+    username: ''
   }),
 
   computed: {
@@ -67,11 +69,11 @@ export default {
       !this.$v.passwords.required && errors.push('Pass is required.')
       return errors
     },
-    emailErrors () {
+    userErrors () {
       const errors = []
-      if (!this.$v.email.$dirty) return errors
-      !this.$v.email.email && errors.push('Must be valid e-mail')
-      !this.$v.email.required && errors.push('E-mail is required')
+      if (!this.$v.username.$dirty) return errors
+      !this.$v.username.maxLength && errors.push('Username must be at most 10 characters long')
+      !this.$v.username.required && errors.push('Username is required')
       return errors
     }
   },
@@ -83,11 +85,11 @@ export default {
     clear () {
       this.$v.$reset()
       this.pass = ''
-      this.email = ''
+      this.username = ''
     },
     async chklogin () {
       if (this.email === 'a@email.com' && this.passwords === '123456') {
-        console.log('e', this.email)
+        console.log('e', this.username)
         console.log('p', this.passwords)
         try {
           var { data } = await this.axios.get('http://192.168.75.130:5000/customers')
