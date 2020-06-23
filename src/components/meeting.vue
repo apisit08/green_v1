@@ -17,13 +17,13 @@
               </td>
               <td>
                 <div class="float-right">
-                  <v-btn icon color="#778899">
+                  <v-btn @click="openSchedule()" icon color="#778899">
                 <v-icon>mdi-calendar</v-icon>
               </v-btn>
               <v-btn icon color="#778899">
                 <v-icon>mdi-account-plus</v-icon>
               </v-btn>
-              <v-btn v-b-modal="'modal-setting'" icon color="#778899">
+              <v-btn @click="openPop()" icon color="#778899">
                 <v-icon>mdi-cog</v-icon>
               </v-btn>
               <button class="btn btn-success" @click="startroom()">เริ่มต้นสนทนา</button>
@@ -82,21 +82,24 @@
       </b-card>
       </v-col>
     </v-row>
-    <Setting/>
+    <ModalSetting ref="popupSetting"/>
+    <ScheduleMain ref="popupMain"/>
 </v-container>
 </template>
 
 <script>
 import ScheduleMeeting from '../components/scheduleMeeting'
 import ConversationSavedMeeting from '../components/conversationSavedMeeting'
-import Setting from '../components/modal/setting'
+import ModalSetting from '../components/modal/modalSetting'
+import ScheduleMain from '../components/modal/scheduleMain'
 import { EventBus } from '@/EventBus'
 
 export default {
   components: {
     ScheduleMeeting,
     ConversationSavedMeeting,
-    Setting
+    ModalSetting,
+    ScheduleMain
   },
   data () {
     return {}
@@ -108,6 +111,15 @@ export default {
     },
     goPage (link) {
       this.$router.push(link)
+    },
+    openPop () {
+      console.log('pressed')
+      this.$refs.popupSetting.dialogSetting = true
+      // this.$refs.popupSetting.opendialog()
+    },
+    openSchedule () {
+      console.log('pressed2')
+      this.$refs.popupMain.dialogScheduleMain = true
     }
   }
 }
