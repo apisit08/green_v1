@@ -1,19 +1,27 @@
 <template>
-    <v-container>
-      <v-card outlined>
-          <v-card-title class="font-card-title">
+  <v-row justify="center">
+    <v-dialog v-model="dialogScheduleMain" persistent max-width="600px">
+      <v-card min-height="300px">
+        <v-card-title>
+          Schedule
+          <v-spacer></v-spacer>
+          <v-icon @click="dialogScheduleMain = false">mdi-close</v-icon>
+        </v-card-title>
+        <v-divider style="margin-top: -0.025px;"></v-divider>
+        <v-card outlined style="margin-left:15px; margin-right:15px;">
+          <v-card-title>
             Schedule
             <v-spacer></v-spacer>
-            <v-icon>mdi-plus-circle</v-icon>
+            <v-icon @click="openModelScheduleAdd">mdi-plus-circle</v-icon>
           </v-card-title>
-          <v-divider></v-divider>
+          <v-divider style="margin-top: -7px;"></v-divider>
           <v-card-text class="text--primary font-card-text">
-              <v-row>
-                  <v-col cols="12" sm="10" md="10">
+              <v-row style="margin-top: -20px;">
+                  <v-col cols="12" sm="9" md="9">
                       การประชุมเตรียมความพร้อมโกอินเตอร์ทูนาซ่า
                   </v-col>
-                  <v-col cols="12" sm="2" md="2">
-                      <v-btn color="success" style="margin-right: 15px;">เริ่มต้นสนทนา</v-btn>
+                  <v-col cols="12" sm="3" md="3">
+                      <v-btn color="success" style="margin-right: 10px;">เริ่มต้น</v-btn>
                       <v-menu>
                           <template v-slot:activator="{ on, attrs }">
                             <v-icon v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
@@ -38,37 +46,42 @@
               </v-row>
           </v-card-text>
       </v-card>
-    </v-container>
+      </v-card>
+      <ScheduleAdd ref="popupScheduleAdd" />
+    </v-dialog>
+  </v-row>
 </template>
 
 <script>
+import ScheduleAdd from '../modal/scheduleAdd'
+
 export default {
-  data () {
-    return {
-      items: [
-        {
-          icon: 'mdi-pencil',
-          title: 'แก้ไข'
-        },
-        {
-          icon: 'mdi-delete',
-          title: 'ลบ'
-        }
-      ]
+  components: {
+    ScheduleAdd
+  },
+  data: () => ({
+    dialogScheduleMain: false,
+    items: [
+      {
+        icon: 'mdi-pencil',
+        title: 'แก้ไข'
+      },
+      {
+        icon: 'mdi-delete',
+        title: 'ลบ'
+      }
+    ]
+  }),
+  methods: {
+    openSchedule () {
+      this.dialogScheduleMain = true
+    },
+    openModelScheduleAdd () {
+      this.$refs.popupScheduleAdd.openScheduleAdd()
     }
   }
 }
 </script>
 
 <style>
-.v-sheet.v-card {
-  border-radius: 10px;
-}
-.font-card-title {
-  font-size: 16px;
-  font-weight: bold;
-}
-.font-card-text {
-  font-size: 16px;
-}
 </style>

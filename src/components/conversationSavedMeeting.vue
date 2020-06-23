@@ -3,10 +3,10 @@
     <v-card outlined>
       <v-card-title class="font-card-title">
         <v-row>
-          <v-col cols="12" sm="8" md="8">
+          <v-col cols="12" sm="9" md="9">
             บันทึกการสนทนา
           </v-col>
-          <v-col cols="12" sm="3" md="3" style="text-align: right;">
+          <v-col cols="12" sm="3" md="3">
             <v-text-field
               outlined
               v-model="search"
@@ -16,10 +16,6 @@
               style="border-radius: 10px;"
             >
             </v-text-field>
-
-          </v-col>
-          <v-col cols="12" sm="1" md="1" style="margin-top: 5px; text-align: right;">
-            <v-icon>mdi-delete</v-icon>
           </v-col>
         </v-row>
       </v-card-title>
@@ -68,7 +64,7 @@ export default {
           count: 10,
           icon: 'mdi-play-circle',
           people: 'รายละเอียด',
-          dot: 'mdi-share-variant'
+          dot: 'mdi-dots-horizontal'
         },
         {
           date: '23/05/2563',
@@ -76,7 +72,7 @@ export default {
           count: 7,
           icon: 'mdi-play-circle',
           people: 'รายละเอียด',
-          dot: 'mdi-share-variant'
+          dot: 'mdi-dots-horizontal'
         },
         {
           date: '22/05/2563',
@@ -84,7 +80,7 @@ export default {
           count: 8,
           icon: 'mdi-play-circle',
           people: 'รายละเอียด',
-          dot: 'mdi-share-variant'
+          dot: 'mdi-dots-horizontal'
         },
         {
           date: '21/05/2563',
@@ -92,7 +88,7 @@ export default {
           count: 10,
           icon: 'mdi-play-circle',
           people: 'รายละเอียด',
-          dot: 'mdi-share-variant'
+          dot: 'mdi-dots-horizontal'
         }
       ]
     }
