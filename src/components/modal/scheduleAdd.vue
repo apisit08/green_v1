@@ -23,9 +23,16 @@
             <v-text-field outlined dense></v-text-field>
           </div>
 
-          <v-checkbox style="margin-top: -10px; margin-bottom: -30px;" label="รหัสผ่านห้องสนทนา" v-model="chkPassword"></v-checkbox>
+          <v-row class="mt-n4 mb-n9">
+            <v-col cols="6" sm="1" md="1">
+              <v-checkbox v-model="chkPassword" class="mt-n3"></v-checkbox>
+            </v-col>
+            <v-col cols="6" sm="11" md="11" class="mt-n1 ml-n4">
+              รหัสผ่านห้องสนทนา
+            </v-col>
+          </v-row>
 
-          <v-row style="margin-bottom: -20px;">
+          <v-row style="margin-bottom: -10px;" v-if="chkPassword == true">
             <v-col cols="12" sm="2" md="2" style="margin-top: 8px;">
               รหัสผ่าน:
             </v-col>
@@ -38,11 +45,11 @@
           </v-row>
 
           <v-row style="margin-bottom: -30px;">
-            <v-col cols="12" sm="2" md="2" style="margin-top: 8px; margin-right: -40px;">
+            <v-col cols="12" sm="2" md="2" style="margin-top: 8px;">
               วันที่
             </v-col>
 
-            <v-col cols="12" sm="3" md="3">
+            <v-col cols="12" sm="4" md="4">
               <v-menu
                 ref="menuDate"
                 :close-on-content-click="false"
@@ -65,7 +72,8 @@
                     v-model="dateFormatted"
                     @blur="date = parseDate(dateFormatted)"
                     v-bind="attrs"
-                    v-on="on">
+                    v-on="on"
+                  >
                   </v-text-field>
                 </template>
 
@@ -77,31 +85,42 @@
               </v-menu>
             </v-col>
 
-            <v-col cols="12" sm="2" md="2" style="margin-top: 8px; margin-right: -40px;">
+            <v-col cols="12" sm="2" md="2" style="margin-top: 8px; margin-right: -50px;">
               เวลา
             </v-col>
             <v-col cols="12" sm="2" md="2">
-              <v-text-field dense outlined placeholder="00:00"></v-text-field>
+              <v-text-field dense outlined placeholder="00:00" label="เริ่มต้น"></v-text-field>
             </v-col>
-            <v-col cols="12" sm="1" md="1" style="margin-top: 8px; margin-right: -10px;">- </v-col>
+            <v-col class="mt-2"><v-icon>mdi-minus</v-icon> </v-col>
             <v-col cols="12" sm="2" md="2">
-              <v-text-field dense outlined placeholder="00:00"></v-text-field>
+              <v-text-field dense outlined placeholder="00:00" label="สิ้นสุด" style=""></v-text-field>
             </v-col>
           </v-row>
 
-          <v-row style="margin-bottom: -18px;">
+          <div class="mb-2 mt-3">
+            เชิญผู้เข้าร่วมผ่านอีเมล
+          </div>
+
+          <!-- <v-row style="margin-bottom: -10px;">
             <v-col cols="12" sm="6" md="6">
               <div style="margin-bottom: 10px;">
                 เชิญผู้เข้าร่วมผ่านอีเมล
               </div>
-              <v-text-field outlined dense></v-text-field>
+              <v-text-field outlined dense :rules="[rules.email]" v-model="email"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="6">
               <v-btn outlined style="margin-top: 28px; font-weight:bold;" color="#49af44">
                 ส่งคำเชิญ
               </v-btn>
             </v-col>
-          </v-row>
+          </v-row> -->
+
+          <b-input-group>
+    <v-text-field outlined dense :rules="[rules.email]" v-model="email"></v-text-field>
+    <b-input-group-append>
+      <b-button variant="outline-success" style="margin-bottom: 26px;">ส่งคำเชิญ</b-button>
+    </b-input-group-append>
+  </b-input-group>
 
           <div style="margin-bottom: 10px;"><span style="color: #9ba1ad;">ตั้งค่า</span></div>
 
@@ -161,7 +180,9 @@ export default {
     menuDate: false,
     dialogScheduleAdd: false,
     arrowUpDown: true,
-    chkPassword: true,
+    chkPassword: false,
+    email: '',
+
     setting: [
       'ต้องผ่านการอนุมัติจากผู้ดูแลก่อนเข้าร่วม',
       'อนุญาตให้ผู้ใช้เริ่มการสนทนาได้เอง',
@@ -175,7 +196,15 @@ export default {
       'สามารถแชทสาธารณะได้',
       'สามารถแชทส่วนตัวได้',
       'จดบันทึกร่วมกัน'
-    ]
+    ],
+    rules: {
+      // required: value => !!value || 'Required.',
+      counter: value => value.length <= 20 || 'Max 20 characters',
+      email: value => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(value) || 'Invalid e-mail.'
+      }
+    }
   }),
   watch: {
     date (val) {

@@ -4,7 +4,7 @@
           <v-card-title class="font-card-title">
             Schedule
             <v-spacer></v-spacer>
-            <v-icon @click="openModelSchedule">mdi-plus-circle</v-icon>
+            <v-icon @click="openModelScheduleAdd">mdi-plus-circle</v-icon>
           </v-card-title>
           <v-divider style="margin-top: -7px;"></v-divider>
           <v-card-text class="text--primary font-card-text">
@@ -38,16 +38,16 @@
               </v-row>
           </v-card-text>
       </v-card>
-      <ScheduleMain ref="popupScheduleMain" />
+      <ScheduleAdd ref="popupScheduleAdd" />
     </v-container>
 </template>
 
 <script>
-import ScheduleMain from '../components/modal/scheduleMain'
+import ScheduleAdd from '../components/modal/scheduleAdd'
 
 export default {
   components: {
-    ScheduleMain
+    ScheduleAdd
   },
   data () {
     return {
@@ -64,8 +64,8 @@ export default {
     }
   },
   methods: {
-    openModelSchedule () {
-      this.$refs.popupScheduleMain.openSchedule()
+    openModelScheduleAdd () {
+      this.$refs.popupScheduleAdd.openScheduleAdd()
     }
   }
 }
