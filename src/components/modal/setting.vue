@@ -1,8 +1,8 @@
 <template>
 <div>
-  <b-modal class="text-center" id="modal-setting" title="ตั้งค่าห้องสนทนา" centered hide-footer>
+  <b-modal class="text-center" id="modal-setting" title="ตั้งค่าห้องสนทนา" centered hide-footer >
     <p class="my-4 text-center">Room 1</p>
-     <div>
+     <div style="border-radius: 16px;">
     <b-form-group>
       <b-form-checkbox>
         รหัสผ่านห้องสนทนา
@@ -15,6 +15,7 @@
         name="flavour-3a"
         >
         {{ option.text }}
+        <v-switch v-model="switch1" inset></v-switch>
       </b-form-checkbox>
     </b-form-group>
   </div>
@@ -25,6 +26,7 @@
 export default {
   data () {
     return {
+      switch1: false,
       selected: [], // Must be an array reference!
       options: [
         { text: 'ต้องผ่านการอนุมัติจากผู้ดูแลก่อนเข้าร่วม', value: 'orange' },

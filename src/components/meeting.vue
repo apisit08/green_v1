@@ -18,10 +18,10 @@
               <td>
                 <div class="float-right">
                   <v-btn @click="openSchedule()" icon color="#778899">
-                <v-icon>mdi-calendar</v-icon>
+                <v-icon v-if="openRoom">mdi-calendar</v-icon>
               </v-btn>
               <v-btn icon color="#778899">
-                <v-icon>mdi-account-plus</v-icon>
+                <v-icon v-if="openRoom">mdi-account-plus</v-icon>
               </v-btn>
               <v-btn @click="openPop()" icon color="#778899">
                 <v-icon>mdi-cog</v-icon>
@@ -30,17 +30,22 @@
                 </div>
               </td>
               <td>
-                <b-button
-                  v-b-toggle="'collapse-'+i"
+                <v-btn class="float-right" v-b-toggle="'collapse-'+i">
+                  <v-icon class="" >mdi-chevron-{{openRoom? 'down' : 'up'}}</v-icon>
+                </v-btn>
+                <!-- <b-button
+                  v-b-toggle="['collapse-'+i, openRoom = !openRoom]"
                   class="float-right"
                   variant="outline-secondary"
+
                 >
+                  <v-icon class="" >mdi-chevron-{{openRoom? 'up' : 'down'}}</v-icon>
                   <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </b-button>
+                </b-button> -->
               </td>
             </tr>
           </table>
-         <b-collapse :id="'collapse-'+i" class="mt-2">
+         <b-collapse :id="'collapse-'+i" class="mt-2" @show="show" @hide="hide">
           <div>
             <v-row>
               <v-col cols="12">
@@ -102,7 +107,9 @@ export default {
     ScheduleMain
   },
   data () {
-    return {}
+    return {
+      openRoom: true
+    }
   },
   methods: {
     startroom () {
@@ -120,6 +127,12 @@ export default {
     openSchedule () {
       console.log('pressed2')
       this.$refs.popupMain.dialogScheduleMain = true
+    },
+    show () {
+      this.openRoom = !this.openRoom
+    },
+    hide () {
+      this.openRoom = !this.openRoom
     }
   }
 }
