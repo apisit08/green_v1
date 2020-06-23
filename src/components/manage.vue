@@ -26,7 +26,7 @@
               <v-btn v-b-modal="'my-modal'" icon color="#778899">
                 <v-icon>mdi-cog</v-icon>
               </v-btn>
-              <button class="btn btn-success">เริ่มต้นสนทนา</button>
+              <button class="btn btn-success">เริ่มต้น</button>
                 </div>
               </td>
               <td>
@@ -71,10 +71,10 @@
               </v-col>
             </v-row>
             <v-row>
-              <Schedule />
+              <ScheduleManage />
             </v-row>
             <v-row>
-              <conversationSavedMeeting />
+              <ConversationSavedManage />
             </v-row>
           </div>
         </b-collapse>
@@ -86,14 +86,14 @@
 </v-container>
 </template>
 <script>
-import Schedule from '../components/schedule'
-import conversationSavedMeeting from '../components/conversationSavedMeeting'
+import ScheduleManage from '../components/scheduleManage'
+import ConversationSavedManage from '../components/conversationSavedManage'
 import Setting from '../components/modal/setting'
 
 export default {
   components: {
-    Schedule,
-    conversationSavedMeeting,
+    ScheduleManage,
+    ConversationSavedManage,
     Setting
   },
   data () {

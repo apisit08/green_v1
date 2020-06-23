@@ -71,10 +71,10 @@
               </v-col>
             </v-row>
             <v-row>
-              <Schedule />
+              <ScheduleMeeting />
             </v-row>
             <v-row>
-              <ConversationSaved />
+              <ConversationSavedMeeting />
             </v-row>
           </div>
         </b-collapse>
@@ -87,15 +87,15 @@
 </template>
 
 <script>
-import Schedule from '../components/schedule'
-import ConversationSaved from '../components/conversationSaved'
+import ScheduleMeeting from '../components/scheduleMeeting'
+import ConversationSavedMeeting from '../components/conversationSavedMeeting'
 import Setting from '../components/modal/setting'
 import { EventBus } from '@/EventBus'
 
 export default {
   components: {
-    Schedule,
-    ConversationSaved,
+    ScheduleMeeting,
+    ConversationSavedMeeting,
     Setting
   },
   data () {
