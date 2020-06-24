@@ -5,6 +5,7 @@ import Register from '../components/register.vue'
 import Login from '../components/login'
 import Manage from '../components/manage'
 import Meeting from '../components/meeting'
+import Maccount from '../components/manageAccount.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/meeting',
     name: 'Meeting',
     component: Meeting
+  },
+  {
+    path: '/manageAccount',
+    name: 'Maccount',
+    component: Maccount
   }
 ]
 
