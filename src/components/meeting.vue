@@ -20,7 +20,7 @@
                   <v-btn @click="openSchedule()" icon color="#778899">
                 <v-icon v-if="openRoom">mdi-calendar</v-icon>
               </v-btn>
-              <v-btn icon color="#778899">
+              <v-btn icon color="#778899" @click="openModalInvite">
                 <v-icon v-if="openRoom">mdi-account-plus</v-icon>
               </v-btn>
               <v-btn @click="openPop()" icon color="#778899">
@@ -89,6 +89,7 @@
     </v-row>
     <ModalSetting ref="popupSetting"/>
     <ScheduleMain ref="popupMain"/>
+    <Invite ref="popupInvite" />
 </v-container>
 </template>
 
@@ -97,6 +98,7 @@ import ScheduleMeeting from '../components/scheduleMeeting'
 import ConversationSavedMeeting from '../components/conversationSavedMeeting'
 import ModalSetting from '../components/modal/modalSetting'
 import ScheduleMain from '../components/modal/scheduleMain'
+import Invite from '../components/modal/invite'
 import { EventBus } from '@/EventBus'
 
 export default {
@@ -104,7 +106,8 @@ export default {
     ScheduleMeeting,
     ConversationSavedMeeting,
     ModalSetting,
-    ScheduleMain
+    ScheduleMain,
+    Invite
   },
   data () {
     return {
@@ -133,6 +136,9 @@ export default {
     },
     hide () {
       this.openRoom = !this.openRoom
+    },
+    openModalInvite () {
+      this.$refs.popupInvite.openInvite()
     }
   }
 }
