@@ -81,14 +81,29 @@
             </v-row>
             <v-row>
               <v-col cols="5">
-                <form>
+                <!-- <form>
               <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="invite someone...">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary " type="submit">ส่งคำเชิญ</button>
                 </div>
               </div>
-            </form>
+            </form> -->
+            <v-form class="mt-n6 mb-n6">
+              <v-row>
+                <v-col cols="8">
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    placeholder="invite someone"
+                    required
+                    outlined
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="4"><v-btn outlined disabled>ส่งคำเชิญ</v-btn></v-col>
+              </v-row>
+            </v-form>
               </v-col>
             </v-row>
             <v-row>
@@ -130,7 +145,12 @@ export default {
       openRoom: true,
       editform: 1,
       editforms: 1,
-      editroom: ''
+      editroom: '',
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || ''
+      ]
     }
   },
   methods: {
