@@ -11,9 +11,25 @@
         <div>
           <table border="0" width="100%">
             <tr>
-              <td>
-                <v-btn icon color="secondary"><v-icon>mdi-pencil</v-icon></v-btn>
+              <td v-if="i+editform > 0">
+                <v-btn icon color="secondary" @click="editformfunc(i)"><v-icon>mdi-pencil</v-icon></v-btn>
                 <label>Room{{i+1}}</label>
+              </td>
+              <td v-if="i+editform <= 0">
+                <v-form>
+                  <table width="100%" border="0">
+                    <tr class="text-center">
+                      <td><v-btn icon color="secondary" disabled><v-icon>mdi-pencil</v-icon></v-btn></td>
+                      <td><v-text-field class="mt-6" dense outlined v-model="editroom"></v-text-field></td>
+                      <td><v-btn color="success" @click="submitfunc()">แก้ไข</v-btn></td>
+                    </tr>
+                  </table>
+                  <!-- <v-row>
+                    <v-col cols="2"><v-btn icon color="secondary" disabled><v-icon>mdi-pencil</v-icon></v-btn></v-col>
+                    <v-col cols="6"><v-text-field outlined v-model="editroom"></v-text-field></v-col>
+                    <v-col cols="4"><v-btn color="success">แก้ไข</v-btn></v-col>
+                  </v-row> -->
+                </v-form>
               </td>
               <td>
                 <div class="float-right">
@@ -111,7 +127,10 @@ export default {
   },
   data () {
     return {
-      openRoom: true
+      openRoom: true,
+      editform: 1,
+      editforms: 1,
+      editroom: ''
     }
   },
   methods: {
@@ -139,6 +158,15 @@ export default {
     },
     openModalInvite () {
       this.$refs.popupInvite.openInvite()
+    },
+    editformfunc (n) {
+      this.editform = -n
+      this.editforms = n
+      this.editroom = 'Room' + (n + 1)
+    },
+    submitfunc () {
+      this.editform = 1
+      this.editforms = 1
     }
   }
 }
