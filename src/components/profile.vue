@@ -5,17 +5,17 @@
       <v-toolbar-title>Profile</v-toolbar-title>
     </v-toolbar>
     <v-tabs vertical>
-      <v-tab style="margin-right: 20px;">
+      <v-tab style="margin-right: auto;">
         <v-icon left>mdi-account</v-icon>
-        Account Info
-      </v-tab>
-      <v-tab style="margin-right: 50px;">
-        <v-icon left>mdi-lock</v-icon>
-        Password
+        ข้อมูลบัญชี
       </v-tab>
       <v-tab>
+        <v-icon left>mdi-lock</v-icon>
+        จัดการรหัสผ่าน
+      </v-tab>
+      <v-tab style="margin-right: auto;">
         <v-icon left>mdi-trash-can</v-icon>
-        Delete Account
+        ลบบัญชี
       </v-tab>
 
       <v-tab-item>
