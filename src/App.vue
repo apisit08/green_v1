@@ -13,15 +13,29 @@
 
       <v-spacer></v-spacer>
 
-      <v-avatar v-if="user" class="profile" size="50" style="border-radius: 10px;">
-        <v-img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"></v-img>
-      </v-avatar>
-      <v-chip v-if="user" class="v-chip-left" large color="white">
-        <!-- <v-avatar class="radius-user profile" size="50">
-          <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-        </v-avatar> -->
-        <span class="font-user">John Leider</span>
-      </v-chip>
+      <v-menu v-if="user" offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <div v-bind="attrs" v-on="on">
+            <v-avatar class="profile" size="50" style="border-radius: 10px;">
+              <v-img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"></v-img>
+            </v-avatar>
+            <v-chip class="v-chip-left" large color="white">
+              <span class="font-user">John Leider</span>
+            </v-chip>
+          </div>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            @click="() => {}"
+            :to="item.link"
+            >
+              <v-avatar left><v-icon>{{ item.icon }}</v-icon></v-avatar>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+        </v-list>
+      </v-menu>
 
     </v-app-bar>
     <v-content>
@@ -41,7 +55,24 @@ export default {
 
   data () {
     return {
-      user: false
+      user: false,
+      items: [
+        {
+          icon: 'mdi-card-account-details',
+          title: 'ข้อมูลส่วนตัว',
+          link: '/profile'
+        },
+        {
+          icon: 'mdi-help-circle',
+          title: 'ต้องการความช่วยเหลือ ?',
+          link: ''
+        },
+        {
+          icon: 'mdi-logout',
+          title: 'ออกจากระบบ',
+          link: '/'
+        }
+      ]
     }
   },
 
