@@ -2,7 +2,7 @@
     <v-container>
       <v-card outlined>
 
-          <v-card-title class="pt-8">Update your Account Info</v-card-title>
+          <v-card-title class="pt-8">แก้ไขข้อมูลบัญชี</v-card-title>
           <v-divider></v-divider>
 
           <v-card-text>
@@ -36,7 +36,7 @@
                       </v-avatar>
                   </v-col>
                   <v-col cols="12" sm="10" md="10">
-                      <v-text-field dense v-model="image" outlined style="margin-top:65px;" placeholder="URL ภาพโปรไฟล์"></v-text-field>
+                      <v-text-field dense v-model="imageShow" outlined style="margin-top:65px;" placeholder="URL ภาพโปรไฟล์"></v-text-field>
                   </v-col>
               </v-row>
 
@@ -44,27 +44,38 @@
 
           <v-card-actions>
               <v-spacer></v-spacer>
-            <v-btn color="orange" style="color:white;">แก้ไข</v-btn>
+            <v-btn color="orange" style="color:white;" @click="openModalAccountInfo">แก้ไข</v-btn>
           </v-card-actions>
+
+          <ConfirmedUpdateAccountInfo ref="popupConfirmed" />
 
       </v-card>
     </v-container>
 </template>
 
 <script>
+import ConfirmedUpdateAccountInfo from '../modal/accountInfo'
+
 export default {
+  components: {
+    ConfirmedUpdateAccountInfo
+  },
   data () {
     return {
-      fullname: null,
-      email: null,
-      provider: null,
+      fullName: 'John Leider',
+      email: 'john.leider@gmail.com',
+      provider: 'INET',
       language: null,
-      image: null,
       imageShow: 'https://avatars0.githubusercontent.com/u/9064066?v=4&s=460',
       dropdown_edit: [
         { text: 'ไทย' },
         { text: 'อังกฤษ' }
       ]
+    }
+  },
+  methods: {
+    openModalAccountInfo () {
+      this.$refs.popupConfirmed.openAccountInfo()
     }
   }
 }
