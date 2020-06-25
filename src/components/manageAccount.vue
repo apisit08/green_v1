@@ -1,8 +1,8 @@
 <template>
-<v-container fluid>
+<v-container fluid="true">
 <v-card>
     <v-toolbar flat color="primary" dark>
-      <v-toolbar-title>User Profile</v-toolbar-title>
+      <v-toolbar-title>Profile</v-toolbar-title>
     </v-toolbar>
     <v-tabs vertical>
       <v-tab>

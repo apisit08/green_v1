@@ -6,6 +6,7 @@ import Login from '../components/login'
 import Manage from '../components/manage'
 import Meeting from '../components/meeting'
 import Maccount from '../components/manageAccount.vue'
+import Invite from '../components/invite'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/manageAccount',
     name: 'Maccount',
     component: Maccount
+  },
+  {
+    path: '/invite',
+    name: 'Invite',
+    component: Invite
   }
 ]
 
