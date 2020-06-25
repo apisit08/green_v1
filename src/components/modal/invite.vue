@@ -37,7 +37,7 @@ export default {
           } else {
             this.inviteEmail = false
           }
-          return pattern.test(value) || 'Invalid e-mail.'
+          return pattern.test(value) || ''
         }
       }
     }

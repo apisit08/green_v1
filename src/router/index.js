@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Register from '../components/register.vue'
+// import Register from '../components/register.vue'
 import Login from '../components/login'
 import Manage from '../components/manage'
 import Meeting from '../components/meeting'
 import Maccount from '../components/manageAccount.vue'
 import Invite from '../components/invite'
+import Profile from '../components/profile'
 
 Vue.use(VueRouter)
 
@@ -16,11 +17,11 @@ const routes = [
     name: 'Manage',
     component: Manage
   },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
-  },
+  // {
+  //   path: '/register',
+  //   name: 'Register',
+  //   component: Register
+  // },
   {
     path: '/',
     name: 'Login',
@@ -40,6 +41,11 @@ const routes = [
     path: '/invite',
     name: 'Invite',
     component: Invite
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 

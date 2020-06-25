@@ -33,19 +33,17 @@
           </v-row>
 
           <v-row style="margin-bottom: -10px;" v-if="chkPassword == true">
-            <v-col cols="12" sm="2" md="2" style="margin-top: 8px;">
-              รหัสผ่าน:
-            </v-col>
-            <v-col cols="12" sm="7" md="7">
-              <v-text-field v-model="txtPassword" dense outlined hint="ตั้งรหัสผ่านความยาว 6 ตัวอักษร"></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="3" md="3" style="margin-top: 8px;">
-              <span style="text-decoration: underline; color: green;" @click="generatePassword">สุ่มรหัสผ่านใหม่</span>
-            </v-col>
+            <b-input-group class="mt-3">
+            <span class="mt-2 mr-2 ml-4" style="color: green;">รหัสผ่าน:</span>
+            <v-text-field v-model="txtPassword" dense outlined hint="ตั้งรหัสผ่านความยาว 6 ตัวอักษร" maxlength="6"></v-text-field>
+            <b-input-group-append class="mr-4">
+              <b-button variant="outline-success" style="margin-bottom: 26px; text-decoration:underline;" @click="generatePassword">สุ่มรหัสผ่านใหม่</b-button>
+            </b-input-group-append>
+          </b-input-group>
           </v-row>
 
           <v-row style="margin-bottom: -30px;">
-            <v-col cols="12" sm="2" md="2" style="margin-top: 8px;">
+            <v-col cols="12" sm="2" md="2" style="margin-top: 8px;" class="mr-n8">
               วันที่
             </v-col>
 
@@ -85,10 +83,10 @@
               </v-menu>
             </v-col>
 
-            <v-col cols="12" sm="2" md="2" style="margin-top: 8px; margin-right: -50px;">
+            <v-col cols="12" sm="2" md="2" style="margin-top: 8px; margin-right: -30px;">
               เวลา
             </v-col>
-            <v-col cols="12" sm="2" md="2">
+            <v-col cols="12" sm="2" md="2" class="mr-1">
               <v-text-field dense outlined placeholder="00:00" label="เริ่มต้น"></v-text-field>
             </v-col>
             <v-col class="mt-2"><v-icon>mdi-minus</v-icon> </v-col>
@@ -101,26 +99,12 @@
             เชิญผู้เข้าร่วมผ่านอีเมล
           </div>
 
-          <!-- <v-row style="margin-bottom: -10px;">
-            <v-col cols="12" sm="6" md="6">
-              <div style="margin-bottom: 10px;">
-                เชิญผู้เข้าร่วมผ่านอีเมล
-              </div>
-              <v-text-field outlined dense :rules="[rules.email]" v-model="email"></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-btn outlined style="margin-top: 28px; font-weight:bold;" color="#49af44">
-                ส่งคำเชิญ
-              </v-btn>
-            </v-col>
-          </v-row> -->
-
           <b-input-group>
-    <v-text-field outlined dense :rules="[rules.email]" v-model="email"></v-text-field>
-    <b-input-group-append>
-      <b-button variant="outline-success" style="margin-bottom: 26px;">ส่งคำเชิญ</b-button>
-    </b-input-group-append>
-  </b-input-group>
+            <v-text-field outlined dense :rules="[rules.email]" v-model="email"></v-text-field>
+            <b-input-group-append>
+              <b-button variant="outline-success" style="margin-bottom: 26px;">ส่งคำเชิญ</b-button>
+            </b-input-group-append>
+          </b-input-group>
 
           <div style="margin-bottom: 10px;"><span style="color: #9ba1ad;">ตั้งค่า</span></div>
 
@@ -181,8 +165,7 @@ export default {
     dialogScheduleAdd: false,
     arrowUpDown: true,
     chkPassword: false,
-    email: '',
-
+    email: null,
     setting: [
       'ต้องผ่านการอนุมัติจากผู้ดูแลก่อนเข้าร่วม',
       'อนุญาตให้ผู้ใช้เริ่มการสนทนาได้เอง',
@@ -199,10 +182,9 @@ export default {
     ],
     rules: {
       // required: value => !!value || 'Required.',
-      counter: value => value.length <= 20 || 'Max 20 characters',
       email: value => {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return pattern.test(value) || 'Invalid e-mail.'
+        return pattern.test(value) || ''
       }
     }
   }),
