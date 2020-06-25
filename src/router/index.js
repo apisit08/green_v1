@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import Login from '../components/login'
 import Manage from '../components/manage'
 import Meeting from '../components/meeting'
+import Maccount from '../components/manageAccount.vue'
+import Invite from '../components/invite'
 import Profile from '../components/profile'
 
 Vue.use(VueRouter)
@@ -29,6 +31,16 @@ const routes = [
     path: '/meeting',
     name: 'Meeting',
     component: Meeting
+  },
+  {
+    path: '/manageAccount',
+    name: 'Maccount',
+    component: Maccount
+  },
+  {
+    path: '/invite',
+    name: 'Invite',
+    component: Invite
   },
   {
     path: '/profile',
