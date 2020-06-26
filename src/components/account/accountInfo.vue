@@ -44,7 +44,8 @@
 
           <v-card-actions>
               <v-spacer></v-spacer>
-            <v-btn color="orange" style="color:white;" @click="openModalAccountInfo">แก้ไข</v-btn>
+              <!-- <v-btn color="orange" style="color:white;" @click="openModalAccountInfo">แก้ไข</v-btn> -->
+            <v-btn color="orange" style="color:white;" @click="alertConfirmed">แก้ไข</v-btn>
           </v-card-actions>
 
           <ConfirmedUpdateAccountInfo ref="popupConfirmed" />
@@ -54,11 +55,11 @@
 </template>
 
 <script>
-import ConfirmedUpdateAccountInfo from '../modal/accountInfo'
+// import ConfirmedUpdateAccountInfo from '../modal/accountInfo'
 
 export default {
   components: {
-    ConfirmedUpdateAccountInfo
+    // ConfirmedUpdateAccountInfo
   },
   data () {
     return {
@@ -74,8 +75,29 @@ export default {
     }
   },
   methods: {
-    openModalAccountInfo () {
-      this.$refs.popupConfirmed.openAccountInfo()
+    // openModalAccountInfo () {
+    //   this.$refs.popupConfirmed.openAccountInfo()
+    // },
+    alertConfirmed () {
+      // Use sweetalert2
+      this.$swal({
+        title: 'ยืนยันแก้ไขข้อมูลบัญชี ?',
+        text: 'ต้องการแก้ไขข้อมูลบัญชีใช่หรือไม่',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ตกลง',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.value) {
+          this.$swal(
+            'สำเร็จ !',
+            'เปลี่ยนข้อมูลบัญชีแล้ว.',
+            'success'
+          )
+        }
+      })
     }
   }
 }
