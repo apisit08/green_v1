@@ -15,7 +15,7 @@
 
               <v-row class="mt-n2">
                   <v-col cols="12" sm="12" md="12" class="text-center">
-                        <v-btn color="red" style="color:white;">ใช่ ฉันต้องการลบบัญชีของฉัน</v-btn>
+                        <v-btn color="red" @click="showAlert" style="color:white;">ใช่ ฉันต้องการลบบัญชีของฉัน</v-btn>
                   </v-col>
               </v-row>
           </v-card-text>
@@ -37,6 +37,29 @@ export default {
         { text: 'ไทย' },
         { text: 'อังกฤษ' }
       ]
+    }
+  },
+  methods: {
+    showAlert () {
+      // Use sweetalert2
+      this.$swal({
+        title: 'ยืนยันลบ?',
+        text: 'ต้องการลบบัญชีใช่หรือไม่',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ตกลง',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.value) {
+          this.$swal(
+            'ลบแล้ว!',
+            'ลบบัญชีสำเร็จ.',
+            'success'
+          )
+        }
+      })
     }
   }
 }
