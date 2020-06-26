@@ -28,8 +28,7 @@
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
-            @click="() => {}"
-            :to="item.link"
+            @click="goPage(item.link)"
             >
               <v-avatar left><v-icon>{{ item.icon }}</v-icon></v-avatar>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -91,6 +90,10 @@ export default {
 
   methods: {
     goPage (link) {
+      // alert(link)
+      if (link === '/') {
+        this.user = false
+      }
       this.$router.push(link)
     },
     register () {

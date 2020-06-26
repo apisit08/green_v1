@@ -2,7 +2,7 @@
 <v-container>
 <v-card>
     <v-toolbar flat>
-      <v-toolbar-title>Profile</v-toolbar-title>
+      <v-toolbar-title>ข้อมูลส่วนตัว</v-toolbar-title>
     </v-toolbar>
     <v-tabs vertical>
       <v-tab style="margin-right: auto;">
@@ -10,8 +10,8 @@
         ข้อมูลบัญชี
       </v-tab>
       <v-tab>
-        <v-icon left>mdi-lock</v-icon>
-        จัดการรหัสผ่าน
+        <v-icon left>mdi-key-variant</v-icon>
+        เปลี่ยนรหัสผ่าน
       </v-tab>
       <v-tab style="margin-right: auto;">
         <v-icon left>mdi-trash-can</v-icon>
@@ -45,9 +45,10 @@
 </template>
 
 <script>
-import AccountInfo from '../components/accountInfo'
+import AccountInfo from '../components/account/accountInfo'
 import Password from '../components/account/password'
 import Profiles from '../components/account/profiles'
+
 export default {
   components: {
     AccountInfo,
