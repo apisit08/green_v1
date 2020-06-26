@@ -6,7 +6,8 @@
       persistent
       max-width="600px"
     >
-      <v-card style="border-radius: 16px;">
+      <v-card style="border-radius: 16px;overflow-x:hidden;">
+        <v-card-title>
           <v-row>
               <v-col cols="8" sm="12" md="8">
                   <v-card-title
@@ -18,7 +19,9 @@
               </v-col>
               <v-col cols="4 mt-4" sm="12" md="4"><span class="ml-11 pl-11 mb-6"><v-btn icon class="pl-11" @click="dialogSetting = false"><v-icon>mdi-close</v-icon></v-btn></span></v-col>
           </v-row>
+        </v-card-title>
         <v-divider style="margin-top: -0.025px;"></v-divider>
+        <v-card-text>
         <v-row class="text-center">
             <v-col>Room 1</v-col>
         </v-row>
@@ -31,7 +34,7 @@
             </v-col>
         </v-row>
         <v-row v-if="checkbox1">
-            <v-col cols="7" md="7" class="text-center">
+            <v-col cols="7" md="8" class="text-center">
              <div class="pl-10">
                 <b-form inline>
                     <label for="feedback-user">รหัสผ่าน: &nbsp;</label>
@@ -45,7 +48,7 @@
                 </b-form>
              </div>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="5" md="4">
                 <b-button variant="success" @click="generatePassword()">สุ่มรหัสผ่าน</b-button>
             </v-col>
 
@@ -77,7 +80,8 @@
                     </v-col>
                 </v-row>
             </b-collapse>
-            <br>
+        </v-card-text>
+        <v-card-actions></v-card-actions>
       </v-card>
     </v-dialog>
   </div>
@@ -135,3 +139,21 @@ export default {
 
 }
 </script>
+
+<style>
+.v-card::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+.v-card::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.v-card::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+</style>
