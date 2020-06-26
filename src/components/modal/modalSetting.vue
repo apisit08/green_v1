@@ -8,7 +8,7 @@
     >
       <v-card style="border-radius: 16px;">
           <v-row>
-              <v-col cols="8">
+              <v-col cols="8" sm="12" md="8">
                   <v-card-title
                     class="headline lighten-2"
                     primary-title
@@ -16,7 +16,7 @@
                     ตั้งค่าห้องสนทนา
                   </v-card-title>
               </v-col>
-              <v-col cols="4 mt-4"><span class="ml-11 pl-11 mb-6"><v-btn icon class="pl-11" @click="dialogSetting = false"><v-icon>mdi-close</v-icon></v-btn></span></v-col>
+              <v-col cols="4 mt-4" sm="12" md="4"><span class="ml-11 pl-11 mb-6"><v-btn icon class="pl-11" @click="dialogSetting = false"><v-icon>mdi-close</v-icon></v-btn></span></v-col>
           </v-row>
         <v-divider style="margin-top: -0.025px;"></v-divider>
         <v-row class="text-center">
