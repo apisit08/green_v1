@@ -29,7 +29,7 @@
 
           <v-card-actions>
               <v-spacer></v-spacer>
-            <v-btn color="primary" style="color:white;">update</v-btn>
+            <v-btn color="warning" @click="btnupdate" style="color:white;">update</v-btn>
           </v-card-actions>
 
       </v-card>
@@ -50,6 +50,26 @@ export default {
     }
   },
   methods: {
+    btnupdate () {
+      this.$swal({
+        title: 'ยืนยันเปลี่ยนรหัสผ่าน?',
+        text: 'ต้องการบันทึกการเปลี่ยนแปลงใช่หรือไม่',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ตกลง',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.value) {
+          this.$swal(
+            'สำเร็จ!',
+            'เปลี่ยนรหัสผ่านแล้ว.',
+            'success'
+          )
+        }
+      })
+    }
   }
 }
 </script>
