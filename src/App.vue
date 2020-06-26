@@ -120,4 +120,23 @@ export default {
   color: black;
   font-weight: 500;
 }
+
+.v-card__text::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.v-card__text::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+.v-card__text::-webkit-scrollbar-thumb {
+  background: lightgray;
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc8c0;
+}
 </style>
