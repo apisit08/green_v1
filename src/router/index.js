@@ -8,6 +8,7 @@ import Meeting from '../components/meeting'
 import Maccount from '../components/manageAccount.vue'
 import Invite from '../components/invite'
 import Profile from '../components/profile'
+import Signin from '../components/sign_in'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
   // },
   {
     path: '/',
+    name: 'Signin',
+    component: Signin
+  },
+  {
+    path: '/login',
     name: 'Login',
     component: Login
   },
