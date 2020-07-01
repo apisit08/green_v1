@@ -150,10 +150,26 @@ export default {
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || ''
-      ]
+      ],
+      datapage: [],
+      room: [],
+      userinfo: []
     }
   },
+  created () {
+    this.decodejwttoken()
+  },
   methods: {
+    decodejwttoken () {
+      var d = localStorage.getItem('user-token')
+      var base64Url = d.split('.')[1]
+      this.datapage = JSON.parse(window.atob(base64Url))
+      console.log(this.datapage)
+      this.userinfo = this.datapage.users
+      // console.log(this.userinfo)
+      this.room = this.datapage.rooms
+      // console.log(this.room)
+    },
     startroom () {
       EventBus.$emit('user')
       this.goPage('/manage')

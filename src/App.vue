@@ -13,14 +13,14 @@
 
       <v-spacer></v-spacer>
 
-      <v-menu v-if="user" offset-y>
+      <v-menu v-if="showuser" offset-y>
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on">
             <v-avatar class="profile" size="50" style="border-radius: 10px;">
-              <v-img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"></v-img>
+              <v-img :src="user.avatar_profile"></v-img>
             </v-avatar>
             <v-chip class="v-chip-left" large color="white">
-              <span class="font-user">John Leider</span>
+              <span class="font-user">{{user.name}}</span>
             </v-chip>
           </div>
         </template>
@@ -54,7 +54,8 @@ export default {
 
   data () {
     return {
-      user: false,
+      user: [],
+      showuser: false,
       items: [
         {
           icon: 'mdi-card-account-details',
@@ -82,9 +83,9 @@ export default {
     // alert(this.user)
     // localStorage.removeItem('user')
     // alert(this.$route.name)
-    if (this.$route.name === 'Login') {
+    if (this.$route.name === 'Signin') {
     // localStorage.removeItem('user')
-      this.user = false
+      this.showuser = false
     }
   },
 
@@ -103,7 +104,13 @@ export default {
       this.goPage('/')
     },
     test () {
-      this.user = true
+      var d = localStorage.getItem('user-token')
+      var base64Url = d.split('.')[1]
+      this.datapage = JSON.parse(window.atob(base64Url))
+      // console.log('datatoken', this.datapage)
+      this.user = this.datapage.users
+      console.log('user', this.user)
+      this.showuser = true
     }
   }
 }
