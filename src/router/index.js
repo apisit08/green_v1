@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// import Register from '../components/register.vue'
+import Register from '../components/register.vue'
 import Login from '../components/login'
 import Manage from '../components/manage'
 import Meeting from '../components/meeting'
@@ -17,11 +17,11 @@ const routes = [
     name: 'Manage',
     component: Manage
   },
-  // {
-  //   path: '/register',
-  //   name: 'Register',
-  //   component: Register
-  // },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
   {
     path: '/',
     name: 'Login',
