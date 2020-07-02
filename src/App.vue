@@ -95,14 +95,9 @@ export default {
       // alert(link)
       if (link === '/') {
         this.showuser = false
-      }
-      if (link === '/logout') {
-        var data = {
-          email: this.email
-        }
-        this.axios.delete('http://localhost:9213' + '/api/auth/logout', data).then((response) => {
-          console.log(response.data)
-        })
+        localStorage.clear()
+        console.log('clear')
+        this.$router.push('/signin')
       }
       this.$router.push(link)
     },
