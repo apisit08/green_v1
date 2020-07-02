@@ -112,7 +112,7 @@ export default {
           email: this.username,
           password: this.passwords
         })
-        if (data.status === 'error') {
+        if (data.error === 'email or password is wrong!') {
           this.$swal(
             'ผิดพลาด!',
             'ชื่อผู้ใช่หรือรหัสผ่านไม่ถูกต้อง',
