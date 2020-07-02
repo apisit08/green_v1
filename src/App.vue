@@ -93,7 +93,10 @@ export default {
     goPage (link) {
       // alert(link)
       if (link === '/') {
-        this.user = false
+        this.showuser = false
+        localStorage.clear()
+        console.log('clear')
+        this.$router.push('/signin')
       }
       this.$router.push(link)
     },
