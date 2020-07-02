@@ -56,6 +56,7 @@ export default {
     return {
       user: [],
       showuser: false,
+      email: null,
       items: [
         {
           icon: 'mdi-card-account-details',
@@ -70,7 +71,7 @@ export default {
         {
           icon: 'mdi-logout',
           title: 'ออกจากระบบ',
-          link: '/'
+          link: '/logout'
         }
       ]
     }
@@ -93,7 +94,15 @@ export default {
     goPage (link) {
       // alert(link)
       if (link === '/') {
-        this.user = false
+        this.showuser = false
+      }
+      if (link === '/logout') {
+        var data = {
+          email: this.email
+        }
+        this.axios.delete('http://localhost:9213' + '/api/auth/logout', data).then((response) => {
+          console.log(response.data)
+        })
       }
       this.$router.push(link)
     },
@@ -111,6 +120,7 @@ export default {
       this.user = this.datapage.users
       console.log('user', this.user)
       this.showuser = true
+      this.email = this.user.email
     }
   }
 }
