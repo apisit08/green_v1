@@ -8,7 +8,7 @@ import Meeting from '../components/meeting'
 import Maccount from '../components/manageAccount.vue'
 import Invite from '../components/invite'
 import Profile from '../components/profile'
-import Signin from '../components/sign_in'
+import Signin from '../components/signIn'
 
 Vue.use(VueRouter)
 
