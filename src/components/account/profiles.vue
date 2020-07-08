@@ -27,21 +27,46 @@
 export default {
   data () {
     return {
-      fullname: null,
-      email: null,
-      provider: null,
-      language: null,
-      image: null,
-      imageShow: 'https://avatars0.githubusercontent.com/u/9064066?v=4&s=460',
-      dropdown_edit: [
-        { text: 'ไทย' },
-        { text: 'อังกฤษ' }
-      ]
+      user: []
+      // id: null
     }
   },
   methods: {
+    decodeToken () {
+      var d = localStorage.getItem('user-token')
+      var base64Url = d.split('.')[1]
+      this.datapage = JSON.parse(window.atob(base64Url))
+      // console.log('datatoken', this.datapage)
+      this.user = this.datapage.users
+      console.log('user', this.user)
+      // this.id = this.user._id
+    },
+    confirmedDelete () {
+      const { id } = this.user._id
+      // console.log(this.user._id)
+      // var token = localStorage.getItem('user-token')
+      // console.log(token)
+      try {
+        // http://localhost:9213/api/users/delete
+        this.axios.delete(process.env.VUE_APP_API + '/api/users/delete', { data: { id } }, {
+          headers: {
+            // 'Content-Type': 'application/json',
+            Authorization: 'bearer ' + localStorage.getItem('user-token')
+          }
+        }).then((response) => {
+          console.log('response', response.data)
+          if (response.data.status === 'success') {
+            this.$swal('Delete successfull.', '', 'success')
+          } else {
+            this.$swal('Error !', 'Please, try again', 'error')
+          }
+        })
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
     showAlert () {
-      // Use sweetalert2
+    // Use sweetalert2
       this.$swal({
         title: 'ยืนยันลบ?',
         text: 'ต้องการลบบัญชีใช่หรือไม่',
@@ -53,14 +78,18 @@ export default {
         cancelButtonText: 'ยกเลิก'
       }).then((result) => {
         if (result.value) {
-          this.$swal(
-            'ลบแล้ว!',
-            'ลบบัญชีสำเร็จ.',
-            'success'
-          )
+          this.confirmedDelete()
+          // this.$swal(
+          //   'ลบแล้ว!',
+          //   'ลบบัญชีสำเร็จ.',
+          //   'success'
+          // )
         }
       })
     }
+  },
+  created () {
+    this.decodeToken()
   }
 }
 </script>

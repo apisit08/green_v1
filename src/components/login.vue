@@ -108,7 +108,7 @@ export default {
     },
     async chklogins () {
       try {
-        var { data } = await this.axios.post('http://localhost:9213/api/auth/login', {
+        var { data } = await this.axios.post(process.env.VUE_APP_API + '/api/auth/login', {
           email: 'test1@mail.com',
           password: '123456789'
         })

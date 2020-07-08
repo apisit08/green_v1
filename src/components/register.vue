@@ -35,7 +35,8 @@
                 <v-text-field label="Avatar Profile" v-model="avatar_profile" outlined></v-text-field>
               </v-col>
               <v-col cols="12" sm="4" md="4">
-                <v-btn color="success" class="mt-2" @click="uploadPhoto">Update Avatar</v-btn>
+                <v-btn color="success" class="mt-2">Update Avatar</v-btn>
+                <!-- <v-btn color="success" class="mt-2" @click="uploadPhoto">Update Avatar</v-btn> -->
               </v-col>
             </v-row>
 
@@ -111,7 +112,7 @@ export default {
         avatar: this.avatar === '' ? 'https://p7.hiclipart.com/preview/518/320/1007/computer-icons-mobile-app-development-android-my-account-icon.jpg' : this.avatar
       }
       // http://localhost:9213/api/avatar/pictureprofile
-      this.axios.post('http://localhost:9213/api/avatar/pictureprofile', data).then((response) => {
+      this.axios.post(process.env.VUE_APP_API + '/api/avatar/pictureprofile', data).then((response) => {
         console.log(response.data)
         // if (response.data.status === 'register success') {
         //   this.$swal('Register successfull.', '', 'success')
@@ -130,7 +131,7 @@ export default {
         avatar_profile: this.avatar_profile === '' ? 'https://p7.hiclipart.com/preview/518/320/1007/computer-icons-mobile-app-development-android-my-account-icon.jpg' : this.avatar_profile
       }
       // http://localhost:9213/api/users/register
-      this.axios.post('http://localhost:9213' + '/api/users/register', data).then((response) => {
+      this.axios.post(process.env.VUE_APP_API + '/api/users/register', data).then((response) => {
         console.log(response.data)
         if (response.data.status === 'success') {
           this.$swal('Register successfull.', '', 'success')
