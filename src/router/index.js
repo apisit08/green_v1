@@ -9,6 +9,7 @@ import Maccount from '../components/manageAccount.vue'
 import Invite from '../components/invite'
 import Profile from '../components/profile'
 import Signin from '../components/signIn'
+import Conference from '../components/conference'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,11 @@ const routes = [
     path: '/manage',
     name: 'Manage',
     component: Manage
+  },
+  {
+    path: '/conference',
+    name: 'Conference',
+    component: Conference
   },
   {
     path: '/register',

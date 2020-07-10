@@ -153,7 +153,8 @@ export default {
       ],
       datapage: [],
       room: [],
-      userinfo: []
+      userinfo: [],
+      d: ''
     }
   },
   created () {
@@ -161,8 +162,8 @@ export default {
   },
   methods: {
     decodejwttoken () {
-      var d = localStorage.getItem('user-token')
-      var base64Url = d.split('.')[1]
+      this.d = localStorage.getItem('user-token')
+      var base64Url = this.d.split('.')[1]
       this.datapage = JSON.parse(window.atob(base64Url))
       console.log(this.datapage)
       this.userinfo = this.datapage.users
@@ -170,9 +171,28 @@ export default {
       this.room = this.datapage.rooms
       // console.log(this.room)
     },
-    startroom () {
+    async startroom () {
       EventBus.$emit('user')
-      this.goPage('/manage')
+      // this.goPage('/manage')
+      console.log('getjitsi')
+
+      const headers = {
+        Authorization: 'Bearer ' + this.d
+      }
+
+      try {
+        var { data } = await this.axios.post('http://localhost:9213/api/rooms/meeting', {
+          user_id: this.userinfo._id
+        },
+        {
+          headers: headers
+        }
+        )
+        window.open(data.room)
+        console.log('data', data)
+      } catch (error) {
+        console.log('error', error.message)
+      }
     },
     goPage (link) {
       this.$router.push(link)

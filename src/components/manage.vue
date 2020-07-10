@@ -26,7 +26,7 @@
               <v-btn v-b-modal="'my-modal'" icon color="#778899">
                 <v-icon>mdi-cog</v-icon>
               </v-btn>
-              <button class="btn btn-success">เริ่มต้น</button>
+              <button class="btn btn-success" @click="getjitsi">เริ่มต้น</button>
                 </div>
               </td>
               <td>
@@ -97,7 +97,39 @@ export default {
     Setting
   },
   data () {
-    return {}
+    return {
+      token: '',
+      user: []
+    }
+  },
+  created () {
+    this.token = localStorage.getItem('user-token')
+    var base64Url = this.oken.split('.')[1]
+    this.datapage = JSON.parse(window.atob(base64Url))
+    this.userinfo = this.datapage.users
+    console.log(this.user)
+  },
+  methods: {
+    async getjitsi () {
+      console.log('getjitsi')
+
+      const headers = {
+        Authorization: 'Bearer ' + this.token
+      }
+
+      try {
+        var { data } = await this.axios.post('http://localhost:9213/api/rooms/meeting', {
+          user_id: this.user._id
+        },
+        {
+          headers: headers
+        }
+        )
+        console.log('data', data)
+      } catch (error) {
+        console.log('error', error.message)
+      }
+    }
   }
 }
 </script>
