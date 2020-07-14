@@ -55,7 +55,7 @@ export default {
   data () {
     return {
       user: [],
-      showuser: false,
+      showuser: true,
       items: [
         {
           icon: 'mdi-card-account-details',
@@ -85,8 +85,9 @@ export default {
     // alert(this.$route.name)
     if (this.$route.name === 'Signin') {
     // localStorage.removeItem('user')
-      this.showuser = false
+      // this.showuser = false
     }
+    this.test()
   },
 
   methods: {
