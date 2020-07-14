@@ -9,7 +9,11 @@
         <v-icon left>mdi-account</v-icon>
         ข้อมูลบัญชี
       </v-tab>
-      <v-tab>
+      <v-tab style="margin-right: auto;">
+        <v-icon left>mdi-camera-account</v-icon>
+        Upload Avatar
+      </v-tab>
+      <v-tab style="margin-right: auto;">
         <v-icon left>mdi-key-variant</v-icon>
         เปลี่ยนรหัสผ่าน
       </v-tab>
@@ -22,6 +26,13 @@
         <v-card flat>
           <v-card-text>
             <AccountInfo />
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <Avatar />
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -48,12 +59,14 @@
 import AccountInfo from '../components/account/accountInfo'
 import Password from '../components/account/password'
 import Profiles from '../components/account/profiles'
+import Avatar from '../components/account/avatar'
 
 export default {
   components: {
     AccountInfo,
     Password,
-    Profiles
+    Profiles,
+    Avatar
   }
 }
 </script>
