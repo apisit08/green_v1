@@ -48,7 +48,8 @@ export default {
       // console.log(token)
       try {
         // http://localhost:9213/api/users/delete
-        this.axios.delete(process.env.VUE_APP_API + '/api/users/delete', { data: { id } }, {
+        this.axios.delete(process.env.VUE_APP_API + '/api/users/delete', {
+          data: { id },
           headers: {
             // 'Content-Type': 'application/json',
             Authorization: 'bearer ' + localStorage.getItem('user-token')
@@ -58,7 +59,7 @@ export default {
           if (response.data.status === 'success') {
             this.$swal('Delete successfull.', '', 'success')
           } else {
-            this.$swal('Error !', 'Please, try again', 'error')
+            this.$swal('Error !', 'Only admin can delete', 'error')
           }
         })
       } catch (error) {
