@@ -31,24 +31,6 @@
                   </v-col>
               </v-row>
 
-              <v-row>
-                <span style="color: black;" class="ml-4 mb-4">รูปภาพ</span>
-              </v-row>
-
-              <v-row>
-                  <v-col cols="12" sm="2" md="2">
-                      <v-avatar class="profile" size="100" style="border-radius: 10px;">
-                        <v-img :src="avatar" v-model="avatar"></v-img>
-                      </v-avatar>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6 ">
-                      <v-file-input dense v-model="avatar" outlined></v-file-input>
-                  </v-col>
-                  <v-col cols="12" sm="4" md="4">
-                    <v-btn color="success" @click="uploadPhoto">Update Avatar</v-btn>
-                  </v-col>
-              </v-row>
-
           </v-card-text>
 
           <v-card-actions>
@@ -80,6 +62,7 @@ export default {
       provider: 'INET',
       language: null,
       avatar: '',
+      selectedFile: null,
       dropdown_edit: [
         { text: 'ไทย' },
         { text: 'อังกฤษ' }
@@ -87,34 +70,18 @@ export default {
     }
   },
   methods: {
-    uploadPhoto () {
-      var data = {
-        user_id: this.id,
-        avatar: this.avatar === '' ? 'https://p7.hiclipart.com/preview/518/320/1007/computer-icons-mobile-app-development-android-my-account-icon.jpg' : this.avatar
-      }
-      // http://localhost:9213/api/avatar/pictureprofile
-      this.axios.post(process.env.VUE_APP_API + '/api/avatar/pictureprofile', data).then((response) => {
-        console.log(response.data)
-        // if (response.data.status === 'register success') {
-        //   this.$swal('Register successfull.', '', 'success')
-        // } else {
-        //   this.$swal('ERROR !', 'Please, try again', 'error')
-        // }
-      })
+    onFileSelected (event) {
+      // console.log(event)
+      this.selectedFile = event.target.files[0]
+      // console.log(this.selectedFile)
     },
-    // openModalAccountInfo () {
-    //   this.$refs.popupConfirmed.openAccountInfo()
-    // },
     confirmedUpdate () {
       var data = {
         id: this.id,
         name: this.name,
-        // email: this.email,
-        // password: this.password,
         phonenumber: this.phonenumber
       }
-      // console.log(data.id)
-      // http://localhost:9213' + '/api/users/update'
+      // http://localhost:9213/api/users/update
       var token = localStorage.getItem('user-token')
       try {
         this.axios.put(process.env.VUE_APP_API + '/api/users/update', data, {
@@ -123,22 +90,13 @@ export default {
           }
         }).then((response) => {
           console.log(response.data)
-          if (response.data.status === 200) {
+          if (response.data.status === 'success') {
             this.$swal('Update successfull.', '', 'success')
-          // this.name = ''
-          // this.email = ''
-          // this.password = ''
-          // this.confirmedPassword = ''
-          // this.phonenumber = ''
-          // this.oneid = ''
+            localStorage.setItem('user-token', response.data.token)
+            this.decodeToken()
+            window.location.reload()
           } else {
             this.$swal('ERROR !', 'Please, try again', 'error')
-          // this.name = ''
-          // this.email = ''
-          // this.password = ''
-          // this.confirmedPassword = ''
-          // this.phonenumber = ''
-          // this.oneid = ''
           }
         })
       } catch (error) {
@@ -172,7 +130,7 @@ export default {
       this.datapage = JSON.parse(window.atob(base64Url))
       // console.log('datatoken', this.datapage)
       this.user = this.datapage.users
-      console.log('user', this.user)
+      // console.log('user', this.datapage.users)
       this.id = this.user._id
       this.name = this.user.name
       this.phonenumber = this.user.phonenumber
