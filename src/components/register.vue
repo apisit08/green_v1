@@ -10,7 +10,7 @@
                 <v-text-field label="Name" v-model="name" required outlined autofocus="true"></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="6">
-                <v-text-field label="Email" v-model="email" required outlined></v-text-field>
+                <v-text-field label="Email" v-model="email" required outlined :rules="[rules.email]"></v-text-field>
               </v-col>
           </v-row>
             <v-row>
@@ -18,25 +18,21 @@
                 <v-text-field label="Password" v-model="password" type="password" required outlined></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="6">
-                <v-text-field label="Password Confirmation" v-model="confirmedPassword" :rules="rules" type="password" required outlined></v-text-field>
+                <v-text-field label="Password Confirmation" v-model="confirmedPassword" :rules="[rules.password]" type="password" required outlined></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12" sm="6" md="6">
-                <v-text-field label="Phonenumber" v-model="phonenumber" required outlined></v-text-field>
+                <v-text-field label="Phonenumber" v-model="phonenumber" :error-messages="phonenumberErrors" required outlined :counter="10"></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="6">
                 <v-text-field label="One ID" v-model="oneid" outlined required></v-text-field>
               </v-col>
             </v-row>
 
-            <v-row>
-              <v-col cols="12" sm="6" md="6">
+            <v-row style="display:none;">
+              <v-col cols="12" sm="12" md="12">
                 <v-text-field label="Avatar Profile" v-model="avatar_profile" outlined></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="4" md="4">
-                <v-btn color="success" class="mt-2">Update Avatar</v-btn>
-                <!-- <v-btn color="success" class="mt-2" @click="uploadPhoto">Update Avatar</v-btn> -->
               </v-col>
             </v-row>
 
@@ -66,7 +62,7 @@
 </template>
 
 <script>
-import { required, maxLength } from 'vuelidate/lib/validators'
+import { required, maxLength, minLength } from 'vuelidate/lib/validators'
 
 export default {
   data () {
@@ -78,10 +74,20 @@ export default {
       phonenumber: '',
       oneid: '',
       avatar_profile: '',
-      rules: [
-        value => !!value || 'Required.',
-        value => (value === this.password) || 'รหัสผ่านไม่ตรงกัน'
-      ]
+      // rules: [
+      //   value => !!value || 'Required.',
+      //   value => (value === this.password) || 'รหัสผ่านไม่ตรงกัน'
+      // ],
+      rules: {
+        required: value => !!value || 'Required.',
+        password: value => {
+          return (value === this.password) || 'รหัสผ่านไม่ตรงกัน'
+        },
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || ''
+        }
+      }
     }
   },
   validations: {
@@ -89,9 +95,18 @@ export default {
     email: { required, maxLength: maxLength(30) },
     password: { require, maxLength: maxLength(30) },
     confirmedPassword: { require, maxLength: maxLength(30) },
-    phonenumber: { require, maxLength: maxLength(10) },
+    phonenumber: { require, minLength: minLength(10) },
     oneid: { require, maxLength: maxLength(33) }
     // avatar_profile: { require }
+  },
+  computed: {
+    phonenumberErrors () {
+      const errors = []
+      if (!this.$v.phonenumber.$dirty) return errors
+      !this.$v.phonenumber.minLength && errors.push('Phone number must be 10 characters long')
+      !this.$v.phonenumber.required && errors.push('Phone number is required.')
+      return errors
+    }
   },
   methods: {
     clearData () {
@@ -105,21 +120,6 @@ export default {
     },
     goPage (link) {
       this.$router.push(link)
-    },
-    uploadPhoto () {
-      var data = {
-        user_id: this.user._id,
-        avatar: this.avatar === '' ? 'https://p7.hiclipart.com/preview/518/320/1007/computer-icons-mobile-app-development-android-my-account-icon.jpg' : this.avatar
-      }
-      // http://localhost:9213/api/avatar/pictureprofile
-      this.axios.post(process.env.VUE_APP_API + '/api/avatar/pictureprofile', data).then((response) => {
-        console.log(response.data)
-        // if (response.data.status === 'register success') {
-        //   this.$swal('Register successfull.', '', 'success')
-        // } else {
-        //   this.$swal('ERROR !', 'Please, try again', 'error')
-        // }
-      })
     },
     register () {
       var data = {
@@ -141,7 +141,6 @@ export default {
           this.confirmedPassword = ''
           this.phonenumber = ''
           this.oneid = ''
-          this.avatar_profile = ''
           this.goPage('/')
         } else {
           this.$swal('Name Invalid !', 'This name already had. Please, try again', 'error')
@@ -151,7 +150,6 @@ export default {
           this.confirmedPassword = ''
           this.phonenumber = ''
           this.oneid = ''
-          this.avatar_profile = ''
         }
       })
     }
