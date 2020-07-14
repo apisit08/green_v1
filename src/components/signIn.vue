@@ -20,6 +20,7 @@
       @blur="$v.username.$touch()"
     ></v-text-field>
     <v-text-field
+    type="password"
       v-model="passwords"
       :error-messages="nameErrors"
       :counter="10"
@@ -28,6 +29,7 @@
       required
       @input="$v.passwords.$touch()"
       @blur="$v.passwords.$touch()"
+      v-on:keyup="enterToSignIn"
     ></v-text-field>
   </form>
         </v-col>
@@ -94,6 +96,15 @@ export default {
   },
 
   methods: {
+    enterToSignIn: function (e) {
+      if (e.keyCode === 13) this.chklogins()
+      // if (e.keyCode === 13) {
+      //   alert('Enter was pressed')
+      // } else if (e.keyCode === 50) {
+      //   alert('@ was pressed');
+      // }
+      // this.log += e.key
+    },
     submit () {
       this.$v.$touch()
     },
